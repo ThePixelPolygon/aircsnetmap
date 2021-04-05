@@ -14,7 +14,7 @@
 <title>AirCS_20Interactive</title>
 <!-- write your code here -->
 <style>
-  #animation_container, #_preload_div_ {
+  #animation_container {
 	position:absolute;
 	margin:auto;
 	left:0;right:0;
@@ -37,9 +37,6 @@ function handleComplete(evt,comp) {
 	//This function is always called, irrespective of the content. You can use the variable "stage" after it is created in token create_stage.
 	var lib=comp.getLibrary();
 	var ss=comp.getSpriteSheet();
-	var preloaderDiv = document.getElementById("_preload_div_");
-	preloaderDiv.style.display = 'none';
-	canvas.style.display = 'block';
 	exportRoot = new lib.AirCSInteractive();
 	stage = new lib.Stage(canvas);
 	stage.enableMouseOver();	
@@ -50,7 +47,7 @@ function handleComplete(evt,comp) {
 		createjs.Ticker.addEventListener("tick", stage);
 	}	    
 	//Code to support hidpi screens and responsive scaling.
-	AdobeAn.makeResponsive(true,'both',false,1,[canvas,preloaderDiv,anim_container,dom_overlay_container]);	
+	AdobeAn.makeResponsive(true,'both',false,1,[canvas,anim_container,dom_overlay_container]);	
 	AdobeAn.compositionLoaded(lib.properties.id);
 	fnStartAnimation();
 }
@@ -59,10 +56,9 @@ function handleComplete(evt,comp) {
 </head>
 <body onload="init();" style="margin:0px;">
 	<div id="animation_container" style="background-color:rgba(0, 0, 0, 1.00); width:1280px; height:720px">
-		<canvas id="canvas" width="1280" height="720" style="position: absolute; display: none; background-color:rgba(0, 0, 0, 1.00);"></canvas>
-		<div id="dom_overlay_container" style="pointer-events:none; overflow:hidden; width:1280px; height:720px; position: absolute; left: 0px; top: 0px; display: none;">
+		<canvas id="canvas" width="1280" height="720" style="position: absolute; display: block; background-color:rgba(0, 0, 0, 1.00);"></canvas>
+		<div id="dom_overlay_container" style="pointer-events:none; overflow:hidden; width:1280px; height:720px; position: absolute; left: 0px; top: 0px; display: block;">
 		</div>
 	</div>
-    <div id='_preload_div_' style='position:absolute; top:0; left:0; display: inline-block; height:720px; width: 1280px; text-align: center;'>	<span style='display: inline-block; height: 100%; vertical-align: middle;'></span>	<img src=images/_preloader.gif style='vertical-align: middle; max-height: 100%'/></div>
 </body>
 </html>
